@@ -29,7 +29,11 @@
                     Content="Zwolnij"/>
             <ComboBox Width="100"
                       Height="30"
-                      Margin="5"/>
+                      Margin="5"
+                      ItemsSource="{Binding EmployementStatusWrapperList}"
+                      DisplayMemberPath="Name"
+                      SelectedValue="{Binding  EmployementStatusWrapperId}"
+                      SelectedValuePath="Id"/>
         </StackPanel>
         <DataGrid Grid.Row="1"/>
 

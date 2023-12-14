@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Wrappers\EmployementStatusWrapper.cs" />
     <Compile Include="Views\ViewModelBase.cs" />
     <Page Include="Views\AddEditEmployeeView.xaml">
       <SubType>Designer</SubType>
@@ -125,7 +126,6 @@
   <ItemGroup>
     <Folder Include="Models\Configurations\" />
     <Folder Include="Models\Converters\" />
-    <Folder Include="Models\Wrappers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
