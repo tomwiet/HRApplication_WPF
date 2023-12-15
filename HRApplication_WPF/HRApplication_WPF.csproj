@@ -82,6 +82,14 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Commands\AsyncRelayCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Migrations\202312151542468_FirsMigration.cs" />
+    <Compile Include="Migrations\202312151542468_FirsMigration.designer.cs">
+      <DependentUpon>202312151542468_FirsMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312151552426_FixedTables.cs" />
+    <Compile Include="Migrations\202312151552426_FixedTables.designer.cs">
+      <DependentUpon>202312151552426_FixedTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\EmployeeConfiguration.cs" />
     <Compile Include="Models\Configurations\EmploymentPeriodConfiguration.cs" />
@@ -127,6 +135,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202312151542468_FirsMigration.resx">
+      <DependentUpon>202312151542468_FirsMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312151552426_FixedTables.resx">
+      <DependentUpon>202312151552426_FixedTables.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
