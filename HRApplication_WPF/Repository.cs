@@ -9,7 +9,7 @@ namespace HRApplication_WPF
     public class Repository
     {
 
-        ssss
+       
 
     }
 }

@@ -18,6 +18,10 @@ namespace HRApplication_WPF.ViewModels
         public MainWindowViewModel()
         {
             setEmployementStatusComboBox();
+            using(var context = new ApplicationDbContext())
+            {
+                var employees = context.Employees.ToList();
+            }
         }
 
        private List<EmployementStatusWrapper> _employementStatusWrapper;
