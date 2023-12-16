@@ -93,8 +93,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\EmployeeConfiguration.cs" />
     <Compile Include="Models\Configurations\EmploymentPeriodConfiguration.cs" />
+    <Compile Include="Models\Converters\EmployeeConverter.cs" />
     <Compile Include="Models\Wrappers\EmployementStatusWrapper.cs" />
     <Compile Include="Models\Wrappers\EmployeeWrapper.cs" />
+    <Compile Include="Models\Wrappers\EmploymentPeriodWrapper.cs" />
     <Compile Include="Views\ViewModelBase.cs" />
     <Page Include="Views\AddEditEmployeeView.xaml">
       <SubType>Designer</SubType>
@@ -155,9 +157,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
