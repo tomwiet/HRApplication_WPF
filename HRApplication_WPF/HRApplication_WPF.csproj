@@ -94,6 +94,7 @@
     <Compile Include="Models\Configurations\EmployeeConfiguration.cs" />
     <Compile Include="Models\Configurations\EmploymentPeriodConfiguration.cs" />
     <Compile Include="Models\Wrappers\EmployementStatusWrapper.cs" />
+    <Compile Include="Models\Wrappers\EmployeeWrapper.cs" />
     <Compile Include="Views\ViewModelBase.cs" />
     <Page Include="Views\AddEditEmployeeView.xaml">
       <SubType>Designer</SubType>

@@ -18,7 +18,8 @@
             <Button Width="100" 
                     Height="30" 
                     Margin="5"
-                    Content="Dodaj"/>
+                    Content="Dodaj"
+                    Command="{Binding AddEmployeeCommand}"/>
             <Button Width="100" 
                     Height="30" 
                     Margin="5"

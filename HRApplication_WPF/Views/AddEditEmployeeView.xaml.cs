@@ -21,7 +21,7 @@ namespace HRApplication_WPF.Views
     /// </summary>
     public partial class AddEditEmployeeView : MetroWindow
     {
-        public AddEditEmployeeView()
+        public AddEditEmployeeView(Models.Wrappers.EmployeeWrapper employeeWrapper)
         {
             InitializeComponent();
             DataContext = new AddEditEmployeeViewModel();
