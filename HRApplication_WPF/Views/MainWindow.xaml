@@ -36,7 +36,22 @@
                       SelectedValue="{Binding  EmployementStatusWrapperId}"
                       SelectedValuePath="Id"/>
         </StackPanel>
-        <DataGrid Grid.Row="1"/>
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Employees}"
+                  SelectedItem="{Binding SelectedEmployee}"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię"/>
+                <DataGridTextColumn Binding="{Binding LasName}" Header="Nazwisko"/>
+                <DataGridTextColumn Binding="{Binding Earnings}" Header="Zarobki"/>
+                <DataGridTextColumn Binding="{Binding EmploymentDate}" Header="Data zatrudnienia"/>
+                <DataGridTextColumn Binding="{Binding DismissDate}" Header="Data zwolnienia"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
 
     </Grid>

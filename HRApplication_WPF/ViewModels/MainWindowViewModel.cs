@@ -29,13 +29,6 @@ namespace HRApplication_WPF.ViewModels
             //}
         }
 
-        private void RefreshEmployesData()
-        {
-            Employees = new ObservableCollection<EmployeeWrapper>(
-                _repository.GetEmployees());
-                   
-        }
-
         public ICommand AddEmployeeCommand { set; get; }
 
 
@@ -50,6 +43,20 @@ namespace HRApplication_WPF.ViewModels
             set 
             {
                 _employees = value;
+                OnPropertychanged();
+            }
+        }
+        private EmployeeWrapper _selectedEmployee;
+
+        public EmployeeWrapper SelectedEmployee
+        {
+            get 
+            { 
+                return _selectedEmployee; 
+            }
+            set 
+            { 
+                _selectedEmployee = value;
                 OnPropertychanged();
             }
         }
@@ -97,7 +104,7 @@ namespace HRApplication_WPF.ViewModels
 
         private void AddEditEmployeWindow_Closed(object sender, EventArgs e)
         {
-            //
+            RefreshEmployesData();
         }
 
         public void SetEmployementStatusComboBox()
@@ -115,6 +122,13 @@ namespace HRApplication_WPF.ViewModels
                                             .ToList();
             EmployementStatusWrapperId = 0;
         }
-        
+
+        private void RefreshEmployesData()
+        {
+            Employees = new ObservableCollection<EmployeeWrapper>(
+                _repository.GetEmployees());
+
+        }
+
     }
 }
