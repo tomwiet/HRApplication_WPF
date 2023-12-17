@@ -1,4 +1,5 @@
-﻿using HRApplication_WPF.Models.Wrappers;
+﻿using HRApplication_WPF.Models.Converters;
+using HRApplication_WPF.Models.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,7 +19,12 @@ namespace HRApplication_WPF
                     .Include(x=>x.EmploymentPeriods)
                     .AsQueryable();
 
-                return new List<EmployeeWrapper>();
+               
+
+                return employees
+                    .ToList()
+                    .Select(x=>x.ToWrapper())
+                    .ToList();
             }
         
            

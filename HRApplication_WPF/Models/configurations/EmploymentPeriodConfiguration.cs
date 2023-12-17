@@ -23,9 +23,6 @@ namespace HRApplication_WPF.Models.Configurations
             Property(x=>x.EmploymentDate) 
                 .IsRequired();
 
-            Property(x => x.DismissalDate)
-                .IsRequired();
-
 
         }
     }

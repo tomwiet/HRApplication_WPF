@@ -21,13 +21,38 @@ namespace HRApplication_WPF.ViewModels
         public MainWindowViewModel()
         {
             AddEmployeeCommand = new RelayCommand(AddEmployee, canAddEmploye);
-            setEmployementStatusComboBox();
+            SetEmployementStatusComboBox();
+            RefreshEmployesData();
             //using(var context = new ApplicationDbContext())
             //{
             //    var employees = context.Employees.ToList();
             //}
         }
+
+        private void RefreshEmployesData()
+        {
+            Employees = new ObservableCollection<EmployeeWrapper>(
+                _repository.GetEmployees());
+                   
+        }
+
         public ICommand AddEmployeeCommand { set; get; }
+
+
+        private ObservableCollection<EmployeeWrapper> _employees;
+
+        public ObservableCollection<EmployeeWrapper> Employees
+        {
+            get 
+            { 
+                return _employees; 
+            }
+            set 
+            {
+                _employees = value;
+                OnPropertychanged();
+            }
+        }
 
         private List<EmployementStatusWrapper> _employementStatusWrapper;
         public List<EmployementStatusWrapper> EmployementStatusWrapperList
@@ -75,7 +100,7 @@ namespace HRApplication_WPF.ViewModels
             //
         }
 
-        private void setEmployementStatusComboBox()
+        public void SetEmployementStatusComboBox()
         {
             
             EmployementStatusWrapperList = 
