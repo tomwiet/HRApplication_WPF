@@ -16,9 +16,10 @@ namespace HRApplication_WPF.ViewModels
     {
 		private Repository _repository = new Repository();
 
-        public AddEditEmployeeViewModel(EmployeeWrapper employee =null)
+        public AddEditEmployeeViewModel(EmployeeWrapper employee = null)
         {
 			CloseCommand = new RelayCommand(Close);
+			ConfirmCommand = new RelayCommand(Confirm);
 			
 			if(employee == null)
 			{
@@ -29,22 +30,28 @@ namespace HRApplication_WPF.ViewModels
 				IsUpdate = true;
 				Employee = employee;
 			}
-				
-
-					
-
         }
 
-        private void Close(object obj)
+        private void Confirm(object obj)
         {
+           if(!IsUpdate)
+			{
+				AddEmployee();
+			}
+			else
+			{
+				//UpdateEmployee();
+			}
 			CloseWindow(obj as Window);
         }
-		private void CloseWindow(Window window)
-		{
-			window.Close();
-		}
+
+        private void AddEmployee()
+        {
+			_repository.AddEmployee(Employee);
+        }
 
         public ICommand CloseCommand { get; set; }
+        public ICommand ConfirmCommand { get; set; }
 
         private EmployeeWrapper _employee;
 		public EmployeeWrapper Employee
@@ -61,8 +68,6 @@ namespace HRApplication_WPF.ViewModels
 		}
 
 		private bool _isUpdate;
-        
-
         public bool IsUpdate
 		{
 			get 
@@ -75,7 +80,14 @@ namespace HRApplication_WPF.ViewModels
 				OnPropertyChanged();
 			}
 		}
+        private void Close(object obj)
+        {
+            CloseWindow(obj as Window);
+        }
+        private void CloseWindow(Window window)
+        {
+            window.Close();
+        }
 
-        
     }
 }

@@ -1,4 +1,5 @@
-﻿using HRApplication_WPF.ViewModels;
+﻿using HRApplication_WPF.Models.Wrappers;
+using HRApplication_WPF.ViewModels;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,10 @@ namespace HRApplication_WPF.Views
     /// </summary>
     public partial class AddEditEmployeeView : MetroWindow
     {
-        public AddEditEmployeeView(Models.Wrappers.EmployeeWrapper employeeWrapper)
+        public AddEditEmployeeView(EmployeeWrapper employee = null)
         {
             InitializeComponent();
-            DataContext = new AddEditEmployeeViewModel();
+            DataContext = new AddEditEmployeeViewModel(employee);
         }
     }
 }

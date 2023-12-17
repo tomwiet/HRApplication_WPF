@@ -27,6 +27,7 @@
         <Label Content="Id" Margin="5"
                Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <TextBox Grid.Column="1" Margin="5"
+                 Text="{Binding Employee.Id}"
                  Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <Label Content="Imię" Grid.Row="1" Margin="5"/>
@@ -44,17 +45,20 @@
         <Label Content="Data zatrudnienia" Grid.Row="4" Margin="5"/>
         <DatePicker 
             Grid.Row="4" Grid.Column="1" Margin="5"
-            SelectedDate="{Binding EmploymentDate}"/>
+            SelectedDate="{Binding Employee.EmploymentDate}"/>
 
         <Label Content="Data zwolnienia" Grid.Row="5" Margin="5"/>
         <DatePicker Grid.Row="5" Grid.Column="1" Margin="5"
-                    SelectedDate="{Binding Dissmisdate}"/>
+                    SelectedDate="{Binding Employee.DismissDate}"
+                    Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
             <Button Content="Anuluj" Height="30" Width="80" Margin="5"
                     Command="{Binding CloseCommand}"
                     CommandParameter="{Binding ElementName=AddEditEmployeeWindow}"/>
             <Button Content="Zapisz" Height="30" Width="80" Margin="5"
-                    Command="{Binding ConfirmCommand}"/>
+                    Command="{Binding ConfirmCommand}"
+                    CommandParameter="{Binding ElementName=AddEditEmployeeWindow}"/>
             
 
         </StackPanel>

@@ -8,10 +8,10 @@ namespace HRApplication_WPF.Models.Wrappers
 {
     public class EmploymentPeriodWrapper
     {
-        public int Id;
-        public int EmployeeId;
-        public DateTime EmploymentDate;
-        public DateTime? DismissDate = null;
+        public int Id {  get; set; }
+        public int EmployeeId {  get; set; }
+        public DateTime EmploymentDate {  get; set; }
+        public DateTime? DismissDate {  get; set; }
 
     }
 }

@@ -19,18 +19,27 @@ namespace HRApplication_WPF
                     .Include(x=>x.EmploymentPeriods)
                     .AsQueryable();
 
-               
-
                 return employees
                     .ToList()
                     .Select(x=>x.ToWrapper())
                     .ToList();
             }
-        
-           
+         
         }
 
-       
+        public void AddEmployee(EmployeeWrapper employeeWrapper)
+        {
+            using( var context = new ApplicationDbContext())
+            {
+                var employee = employeeWrapper.ToDao();
+                context.Employees.Add(employee);
 
+                var employmentPeriod = employeeWrapper.ToEmployementPeriodDao();
+                context.EmploymentPeriods.Add(employmentPeriod);
+
+                context.SaveChanges();
+
+            }
+        }
     }
 }
