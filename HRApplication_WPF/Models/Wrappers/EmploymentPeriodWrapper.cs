@@ -11,7 +11,7 @@ namespace HRApplication_WPF.Models.Wrappers
         public int Id;
         public int EmployeeId;
         public DateTime EmploymentDate;
-        public DateTime DismissDate;
+        public DateTime? DismissDate = null;
 
     }
 }

@@ -43,7 +43,7 @@ namespace HRApplication_WPF.ViewModels
             set 
             {
                 _employees = value;
-                OnPropertychanged();
+                OnPropertyChanged();
             }
         }
         private EmployeeWrapper _selectedEmployee;
@@ -57,7 +57,7 @@ namespace HRApplication_WPF.ViewModels
             set 
             { 
                 _selectedEmployee = value;
-                OnPropertychanged();
+                OnPropertyChanged();
             }
         }
 
@@ -71,7 +71,7 @@ namespace HRApplication_WPF.ViewModels
             set 
             {
                 _employementStatusWrapper = value;
-                OnPropertychanged();
+                OnPropertyChanged();
             }
         }
 
@@ -86,7 +86,7 @@ namespace HRApplication_WPF.ViewModels
             set 
             { 
                 _employementStatusWrapperId = value;
-                OnPropertychanged();
+                OnPropertyChanged();
             }
         }
 

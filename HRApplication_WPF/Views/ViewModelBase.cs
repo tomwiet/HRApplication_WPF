@@ -12,7 +12,7 @@ namespace HRApplication_WPF.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertychanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

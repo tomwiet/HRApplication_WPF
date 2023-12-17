@@ -6,8 +6,58 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:HRApplication_WPF.Views"
         mc:Ignorable="d"
-        Title="AddEditEmployeeView" Height="450" Width="800">
+        Name="AddEditEmployeeWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="Dane pracownika" Height="300" Width="300">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
+        <Label Content="Id" Margin="5"
+               Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <TextBox Grid.Column="1" Margin="5"
+                 Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <Label Content="Imię" Grid.Row="1" Margin="5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
+                 Text="{Binding Employee.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Nazwisko" Grid.Row="2" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
+                 Text="{Binding Employee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Zarobki" Grid.Row="3" Margin="5"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5"
+         Text="{Binding Employee.Earnings, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Data zatrudnienia" Grid.Row="4" Margin="5"/>
+        <DatePicker 
+            Grid.Row="4" Grid.Column="1" Margin="5"
+            SelectedDate="{Binding EmploymentDate}"/>
+
+        <Label Content="Data zwolnienia" Grid.Row="5" Margin="5"/>
+        <DatePicker Grid.Row="5" Grid.Column="1" Margin="5"
+                    SelectedDate="{Binding Dissmisdate}"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+            <Button Content="Anuluj" Height="30" Width="80" Margin="5"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding ElementName=AddEditEmployeeWindow}"/>
+            <Button Content="Zapisz" Height="30" Width="80" Margin="5"
+                    Command="{Binding ConfirmCommand}"/>
+            
+
+        </StackPanel>
+
     </Grid>
 </mah:MetroWindow>
