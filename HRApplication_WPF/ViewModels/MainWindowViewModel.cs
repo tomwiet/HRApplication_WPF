@@ -31,7 +31,7 @@ namespace HRApplication_WPF.ViewModels
 
         private bool canDismissEmploye(object obj)
         {
-            if(SelectedEmployee != null && SelectedEmployee.DismissDate != null)
+            if(SelectedEmployee != null && SelectedEmployee.DismissDate == null)
                 return true;
 
             return false;

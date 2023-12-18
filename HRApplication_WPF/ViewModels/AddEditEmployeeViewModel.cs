@@ -25,13 +25,18 @@ namespace HRApplication_WPF.ViewModels
 			
 			if(employee == null)
 			{
+				IsUpdate = false;
 				Employee = new EmployeeWrapper();
 				Employee.EmploymentDate = DateTime.Now;
 			}
 			else
 			{
 				IsUpdate = true;
-				Employee = employee;
+                IsEmployed = true;
+                Employee = employee;
+
+				if(Employee.DismissDate == null )
+					IsEmployed = false;
 			}
         }
 
@@ -88,7 +93,15 @@ namespace HRApplication_WPF.ViewModels
 				OnPropertyChanged();
 			}
 		}
-        private void Close(object obj)
+
+		private bool _isUpdateOrEmployed;
+		public bool IsEmployed
+        {
+			get { return _isUpdateOrEmployed; }
+			set { _isUpdateOrEmployed = value; }
+		}
+
+		private void Close(object obj)
         {
             CloseWindow(obj as Window);
         }

@@ -51,11 +51,11 @@
             SelectedDate="{Binding Employee.EmploymentDate}"/>
 
         <Label Content="Data zwolnienia" Grid.Row="5" Margin="5"
-               Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+               Visibility="{Binding IsEmployed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <DatePicker Grid.Row="5" Grid.Column="1" Margin="5"
                     SelectedDateFormat="Short"
                     SelectedDate="{Binding Employee.DismissDate}"
-                    Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    Visibility="{Binding IsEmployed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
             <Button Content="Anuluj" Height="30" Width="80" Margin="5"
