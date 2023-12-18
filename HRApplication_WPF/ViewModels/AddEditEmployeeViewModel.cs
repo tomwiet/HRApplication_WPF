@@ -15,8 +15,6 @@ namespace HRApplication_WPF.ViewModels
     public class AddEditEmployeeViewModel : ViewModelBase
     {
 		private Repository _repository = new Repository();
-		private DateTime _today = DateTime.Now;
-		
 
         public AddEditEmployeeViewModel(EmployeeWrapper employee = null)
         {

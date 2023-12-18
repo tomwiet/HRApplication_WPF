@@ -20,17 +20,23 @@ namespace HRApplication_WPF.ViewModels
         private Repository _repository = new Repository();
         public MainWindowViewModel()
         {
-            AddEmployeeCommand = new RelayCommand(AddEmployee, canAddEmploye);
+            AddEmployeeCommand = new RelayCommand(AddEditEmployee, canAddEmployee);
+            EditEmployeeCommand = new RelayCommand(AddEditEmployee, canEditEmployee);
+            
             SetEmployementStatusComboBox();
             RefreshEmployesData();
-            //using(var context = new ApplicationDbContext())
-            //{
-            //    var employees = context.Employees.ToList();
-            //}
+            
         }
 
-        public ICommand AddEmployeeCommand { set; get; }
+        private bool canEditEmployee(object obj)
+        {
+            return true;
+        }
 
+       
+
+        public ICommand AddEmployeeCommand { set; get; }
+        public ICommand EditEmployeeCommand {set;   get; }
 
         private ObservableCollection<EmployeeWrapper> _employees;
 
@@ -76,7 +82,6 @@ namespace HRApplication_WPF.ViewModels
         }
 
         private int _employementStatusWrapperId;
-
         public int EmployementStatusWrapperId
         {
             get 
@@ -89,24 +94,21 @@ namespace HRApplication_WPF.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private bool canAddEmploye(object obj)
+        private bool canAddEmployee(object obj)
         {
             return true;
         }
-        private void AddEmployee(object obj)
+        private void AddEditEmployee(object obj)
         {
-            var addEditEmployeWindow = 
-                new AddEditEmployeeView(obj as EmployeeWrapper);
-            addEditEmployeWindow.Closed += AddEditEmployeWindow_Closed;
-            addEditEmployeWindow.ShowDialog();
+           var addEditEmployeWindow = 
+           new AddEditEmployeeView(obj as EmployeeWrapper);
+           addEditEmployeWindow.Closed += AddEditEmployeWindow_Closed;
+           addEditEmployeWindow.ShowDialog();
         }
-
         private void AddEditEmployeWindow_Closed(object sender, EventArgs e)
         {
             RefreshEmployesData();
         }
-
         public void SetEmployementStatusComboBox()
         {
             
@@ -122,7 +124,6 @@ namespace HRApplication_WPF.ViewModels
                                             .ToList();
             EmployementStatusWrapperId = 0;
         }
-
         private void RefreshEmployesData()
         {
             Employees = new ObservableCollection<EmployeeWrapper>(
