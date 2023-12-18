@@ -52,8 +52,12 @@
                 <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię"/>
                 <DataGridTextColumn Binding="{Binding LastName}" Header="Nazwisko"/>
                 <DataGridTextColumn Binding="{Binding Earnings}" Header="Zarobki"/>
-                <DataGridTextColumn Binding="{Binding EmploymentDate, StringFormat=d}" Header="Data zatrudnienia"/>
-                <DataGridTextColumn Binding="{Binding DismissDate, StringFormat=d}" Header="Data zwolnienia"/>
+                <DataGridTextColumn 
+                    Binding="{Binding EmploymentDate,StringFormat=d,ConverterCulture=pl-PL}"          
+                    Header="Data zatrudnienia"/>
+                <DataGridTextColumn 
+                    Binding="{Binding DismissDate, StringFormat=d,ConverterCulture=pl-PL}" 
+                    Header="Data zwolnienia"/>
             </DataGrid.Columns>
         </DataGrid>
 
