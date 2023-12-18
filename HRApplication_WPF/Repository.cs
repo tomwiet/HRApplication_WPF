@@ -27,19 +27,43 @@ namespace HRApplication_WPF
          
         }
 
-        public void AddEmployee(EmployeeWrapper employeeWrapper)
+        public void AddEmployee(EmployeeWrapper employee)
         {
             using( var context = new ApplicationDbContext())
             {
-                var employee = employeeWrapper.ToDao();
-                context.Employees.Add(employee);
+                var employeeDb = employee.ToDao();
+                context.Employees.Add(employeeDb);
 
-                var employmentPeriod = employeeWrapper.ToEmployementPeriodDao();
+                var employmentPeriod = employee.ToEmployementPeriodDao();
                 context.EmploymentPeriods.Add(employmentPeriod);
 
                 context.SaveChanges();
 
             }
+        }
+
+        internal void UpdateEmployee(EmployeeWrapper employee)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var employeDb = employee.ToDao();
+                var employmentPeriodsDb = employee.ToEmployementPeriodDao(); 
+                var employeeToUpdate = context.Employees.Find(employee.Id);
+
+                employeeToUpdate.FirsName = employeDb.FirsName;
+                employeeToUpdate.LastName = employeDb.LastName;
+                employeeToUpdate.Earnings = employeDb.Earnings;
+
+                var employmentPeriodToUpdate = context.EmploymentPeriods.Find(employee.EmploymentPeriodId);
+
+                employmentPeriodToUpdate.EmploymentDate = employmentPeriodsDb.EmploymentDate;
+                employmentPeriodToUpdate.DismissalDate = employmentPeriodsDb.DismissalDate;
+
+                context.SaveChanges();
+
+            }
+                
+            
         }
     }
 }

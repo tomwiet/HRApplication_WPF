@@ -28,10 +28,10 @@ namespace HRApplication_WPF.Models.Converters
         public static EmploymentPeriod ToEmployementPeriodDao(this EmployeeWrapper model) 
         {
             return new EmploymentPeriod
-            {
+            { 
                 EmployeeId = model.Id,
                 EmploymentDate = model.EmploymentDate,
-                //DismissalDate = model.DismissDate
+                DismissalDate = model.DismissDate
             };
         
         }
@@ -40,8 +40,12 @@ namespace HRApplication_WPF.Models.Converters
             return new EmployeeWrapper
             {
                 Id = model.Id,
+                EmploymentPeriodId = model.EmploymentPeriods
+                                        .Where(x=>x.EmployeeId==model.Id)
+                                        .Select(y=>y.Id)
+                                        .First(),
                 FirstName = model.FirsName,
-                LastName = model.FirsName,
+                LastName = model.LastName,
                 Earnings = model.Earnings,
                 EmploymentDate = model.EmploymentPeriods
                                         .Where(x => x.EmployeeId == model.Id)

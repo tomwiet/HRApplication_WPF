@@ -43,9 +43,14 @@ namespace HRApplication_WPF.ViewModels
 			}
 			else
 			{
-				//UpdateEmployee();
+				UpdateEmployee();
 			}
 			CloseWindow(obj as Window);
+        }
+
+        private void UpdateEmployee()
+        {
+			_repository.UpdateEmployee(Employee);
         }
 
         private void AddEmployee()

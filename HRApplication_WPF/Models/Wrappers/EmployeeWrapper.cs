@@ -9,6 +9,8 @@ namespace HRApplication_WPF.Models.Wrappers
     public class EmployeeWrapper
     {
         public int Id { get; set; }
+        
+        public int EmploymentPeriodId;
         public string FirstName {  get; set; }
         public string LastName {  get; set; }
         public decimal Earnings {  get; set; }

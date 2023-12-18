@@ -29,7 +29,8 @@
                                     Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <TextBox Grid.Column="1" Margin="5"
                  Text="{Binding Employee.Id}"
-                 Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                 Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 IsReadOnly="True"/>
 
         <Label Content="Imię" Grid.Row="1" Margin="5"/>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5"

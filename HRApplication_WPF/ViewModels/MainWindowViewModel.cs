@@ -22,21 +22,30 @@ namespace HRApplication_WPF.ViewModels
         {
             AddEmployeeCommand = new RelayCommand(AddEditEmployee, canAddEmployee);
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, canEditEmployee);
+            DismissEmployeeCommand = new RelayCommand(DismissEmployee, canDismissEmploye);
             
             SetEmployementStatusComboBox();
             RefreshEmployesData();
             
         }
 
-        private bool canEditEmployee(object obj)
+        private bool canDismissEmploye(object obj)
         {
-            return true;
+            if(SelectedEmployee != null && SelectedEmployee.DismissDate != null)
+                return true;
+
+            return false;
+                
         }
 
-       
+        private void DismissEmployee(object obj)
+        {
+            //throw new NotImplementedException();
+        }
 
         public ICommand AddEmployeeCommand { set; get; }
-        public ICommand EditEmployeeCommand {set;   get; }
+        public ICommand EditEmployeeCommand {set; get; }
+        public ICommand DismissEmployeeCommand { set; get; }
 
         private ObservableCollection<EmployeeWrapper> _employees;
 
@@ -94,10 +103,6 @@ namespace HRApplication_WPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        private bool canAddEmployee(object obj)
-        {
-            return true;
-        }
         private void AddEditEmployee(object obj)
         {
            var addEditEmployeWindow = 
@@ -109,6 +114,18 @@ namespace HRApplication_WPF.ViewModels
         {
             RefreshEmployesData();
         }
+        private bool canAddEmployee(object obj)
+        {
+            return true;
+        }
+        private bool canEditEmployee(object obj)
+        {
+            if (SelectedEmployee == null)
+                return false;
+
+            return true;
+        }
+
         public void SetEmployementStatusComboBox()
         {
             

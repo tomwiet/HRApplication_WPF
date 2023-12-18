@@ -29,7 +29,9 @@
             <Button Width="100" 
                     Height="30" 
                     Margin="5"
-                    Content="Zwolnij"/>
+                    Content="Zwolnij"
+                    Command="{Binding DismissEmployeeCommand}"
+                    CommandParameter="{Binding SelectedEmployee}"/>
             <ComboBox Width="100"
                       Height="30"
                       Margin="5"
