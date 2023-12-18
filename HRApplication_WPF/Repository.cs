@@ -1,4 +1,5 @@
-﻿using HRApplication_WPF.Models.Converters;
+﻿using HRApplication_WPF.Model.Domains;
+using HRApplication_WPF.Models.Converters;
 using HRApplication_WPF.Models.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,8 @@ namespace HRApplication_WPF
                 employeeToUpdate.LastName = employeDb.LastName;
                 employeeToUpdate.Earnings = employeDb.Earnings;
 
-                var employmentPeriodToUpdate = context.EmploymentPeriods.Find(employee.EmploymentPeriodId);
+                var employmentPeriodToUpdate = context.EmploymentPeriods
+                    .Find(employee.EmploymentPeriodId);
 
                 employmentPeriodToUpdate.EmploymentDate = employmentPeriodsDb.EmploymentDate;
                 employmentPeriodToUpdate.DismissalDate = employmentPeriodsDb.DismissalDate;
@@ -64,6 +66,22 @@ namespace HRApplication_WPF
             }
                 
             
+        }
+
+        internal void DismissEmployee(int employmentPeriodId)
+        {
+            using(var context = new ApplicationDbContext())
+            {
+                
+                var employmentPeriodToUpdate = context.EmploymentPeriods
+                    .Find(employmentPeriodId);
+
+                employmentPeriodToUpdate.DismissalDate = DateTime.Now;
+
+                context.SaveChanges();
+
+
+            }
         }
     }
 }

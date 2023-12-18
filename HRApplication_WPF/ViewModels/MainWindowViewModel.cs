@@ -3,6 +3,7 @@ using HRApplication_WPF.Models;
 using HRApplication_WPF.Models.Wrappers;
 using HRApplication_WPF.Views;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HRApplication_WPF.ViewModels
@@ -22,7 +24,7 @@ namespace HRApplication_WPF.ViewModels
         {
             AddEmployeeCommand = new RelayCommand(AddEditEmployee, canAddEmployee);
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, canEditEmployee);
-            DismissEmployeeCommand = new RelayCommand(DismissEmployee, canDismissEmploye);
+            DismissEmployeeCommand = new AsyncRelayCommand(DismissEmployee, canDismissEmploye);
             
             SetEmployementStatusComboBox();
             RefreshEmployesData();
@@ -38,9 +40,22 @@ namespace HRApplication_WPF.ViewModels
                 
         }
 
-        private void DismissEmployee(object obj)
+        private async Task DismissEmployee(object obj)
         {
-            //throw new NotImplementedException();
+            var dismissWindow = Application.Current.MainWindow as MetroWindow;
+            var dialog = await dismissWindow.ShowMessageAsync("Zwolnij pracownika",
+                $"Czy chcesz zwolnic pracownika " +
+                $"{SelectedEmployee.FirstName} " +
+                $"{SelectedEmployee.LastName}?",
+                MessageDialogStyle.AffirmativeAndNegative);
+
+            if (dialog != MessageDialogResult.Affirmative)
+                return;
+            
+            _repository.DismissEmployee(SelectedEmployee.EmploymentPeriodId);
+            
+            RefreshEmployesData();
+
         }
 
         public ICommand AddEmployeeCommand { set; get; }
