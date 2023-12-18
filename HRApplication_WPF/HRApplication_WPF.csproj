@@ -94,6 +94,10 @@
     <Compile Include="Migrations\202312170751091_DismissDateIsNotRequired.designer.cs">
       <DependentUpon>202312170751091_DismissDateIsNotRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312180802070_SetDismisstimeToNullable.cs" />
+    <Compile Include="Migrations\202312180802070_SetDismisstimeToNullable.designer.cs">
+      <DependentUpon>202312180802070_SetDismisstimeToNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\EmployeeConfiguration.cs" />
     <Compile Include="Models\Configurations\EmploymentPeriodConfiguration.cs" />
@@ -150,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312170751091_DismissDateIsNotRequired.resx">
       <DependentUpon>202312170751091_DismissDateIsNotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312180802070_SetDismisstimeToNullable.resx">
+      <DependentUpon>202312180802070_SetDismisstimeToNullable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

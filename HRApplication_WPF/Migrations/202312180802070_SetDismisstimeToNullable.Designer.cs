@@ -4,17 +4,16 @@ namespace HRApplication_WPF.Migrations
     using System.CodeDom.Compiler;
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Infrastructure;
-    using System.Data.SqlTypes;
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class FirsMigration : IMigrationMetadata
+    public sealed partial class SetDismisstimeToNullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirsMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SetDismisstimeToNullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202312151542468_FirsMigration"; }
+            get { return "202312180802070_SetDismisstimeToNullable"; }
         }
         
         string IMigrationMetadata.Source

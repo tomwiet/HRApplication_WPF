@@ -45,10 +45,13 @@
         <Label Content="Data zatrudnienia" Grid.Row="4" Margin="5"/>
         <DatePicker 
             Grid.Row="4" Grid.Column="1" Margin="5"
+            SelectedDateFormat="Short"
             SelectedDate="{Binding Employee.EmploymentDate}"/>
 
-        <Label Content="Data zwolnienia" Grid.Row="5" Margin="5"/>
+        <Label Content="Data zwolnienia" Grid.Row="5" Margin="5"
+               Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <DatePicker Grid.Row="5" Grid.Column="1" Margin="5"
+                    SelectedDateFormat="Short"
                     SelectedDate="{Binding Employee.DismissDate}"
                     Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         

@@ -15,15 +15,20 @@ namespace HRApplication_WPF.ViewModels
     public class AddEditEmployeeViewModel : ViewModelBase
     {
 		private Repository _repository = new Repository();
+		private DateTime _today = DateTime.Now;
+		
 
         public AddEditEmployeeViewModel(EmployeeWrapper employee = null)
         {
 			CloseCommand = new RelayCommand(Close);
 			ConfirmCommand = new RelayCommand(Confirm);
 			
+			
+			
 			if(employee == null)
 			{
 				Employee = new EmployeeWrapper();
+				Employee.EmploymentDate = DateTime.Now;
 			}
 			else
 			{

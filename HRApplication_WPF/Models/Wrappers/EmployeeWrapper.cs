@@ -13,6 +13,6 @@ namespace HRApplication_WPF.Models.Wrappers
         public string LastName {  get; set; }
         public decimal Earnings {  get; set; }
         public DateTime EmploymentDate {  get; set; }
-        public DateTime DismissDate {  get; set; }
+        public DateTime? DismissDate {  get; set; }
 	}
 }
