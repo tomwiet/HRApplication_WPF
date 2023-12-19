@@ -27,16 +27,12 @@ namespace HRApplication_WPF.ViewModels
             DismissEmployeeCommand = new AsyncRelayCommand(DismissEmployee, canDismissEmploye);
             ComboBoxSelectionChangeCommand = new RelayCommand(ComboBoxSelectionChange);
 
-
             SetEmployementStatusComboBox();
             RefreshEmployesData();
    
         }
 
-        private void ComboBoxSelectionChange(object arg)
-        {
-            RefreshEmployesData(EmployementStatusWrapperId);
-        }
+        
 
         public ICommand AddEmployeeCommand { set; get; }
         public ICommand EditEmployeeCommand {set; get; }
@@ -174,6 +170,9 @@ namespace HRApplication_WPF.ViewModels
             RefreshEmployesData();
 
         }
-
+        private void ComboBoxSelectionChange(object arg)
+        {
+            RefreshEmployesData(EmployementStatusWrapperId);
+        }
     }
 }

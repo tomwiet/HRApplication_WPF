@@ -41,8 +41,14 @@
                  Text="{Binding Employee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Zarobki" Grid.Row="3" Margin="5"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="5"
-         Text="{Binding Employee.Earnings, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox 
+            Grid.Row="3" 
+            Grid.Column="1" 
+            Margin="5"
+            Text="{Binding Employee.Earnings, 
+                    UpdateSourceTrigger=PropertyChanged,
+                    StringFormat=C2, 
+                    ConverterCulture=pl-PL}"/>
 
         <Label Content="Data zatrudnienia" Grid.Row="4" Margin="5"/>
         <DatePicker 
