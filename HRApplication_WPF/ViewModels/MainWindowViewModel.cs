@@ -25,45 +25,25 @@ namespace HRApplication_WPF.ViewModels
             AddEmployeeCommand = new RelayCommand(AddEditEmployee, canAddEmployee);
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, canEditEmployee);
             DismissEmployeeCommand = new AsyncRelayCommand(DismissEmployee, canDismissEmploye);
-            
+            ComboBoxSelectionChangeCommand = new RelayCommand(ComboBoxSelectionChange);
+
+
             SetEmployementStatusComboBox();
             RefreshEmployesData();
-            
+   
         }
 
-        private bool canDismissEmploye(object obj)
+        private void ComboBoxSelectionChange(object arg)
         {
-            if(SelectedEmployee != null && SelectedEmployee.DismissDate == null)
-                return true;
-
-            return false;
-                
-        }
-
-        private async Task DismissEmployee(object obj)
-        {
-            var dismissWindow = Application.Current.MainWindow as MetroWindow;
-            var dialog = await dismissWindow.ShowMessageAsync("Zwolnij pracownika",
-                $"Czy chcesz zwolnic pracownika " +
-                $"{SelectedEmployee.FirstName} " +
-                $"{SelectedEmployee.LastName}?",
-                MessageDialogStyle.AffirmativeAndNegative);
-
-            if (dialog != MessageDialogResult.Affirmative)
-                return;
-            
-            _repository.DismissEmployee(SelectedEmployee.EmploymentPeriodId);
-            
-            RefreshEmployesData();
-
+            RefreshEmployesData(EmployementStatusWrapperId);
         }
 
         public ICommand AddEmployeeCommand { set; get; }
         public ICommand EditEmployeeCommand {set; get; }
         public ICommand DismissEmployeeCommand { set; get; }
+        public ICommand ComboBoxSelectionChangeCommand { set; get; }
 
         private ObservableCollection<EmployeeWrapper> _employees;
-
         public ObservableCollection<EmployeeWrapper> Employees
         {
             get 
@@ -76,8 +56,8 @@ namespace HRApplication_WPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        private EmployeeWrapper _selectedEmployee;
 
+        private EmployeeWrapper _selectedEmployee;
         public EmployeeWrapper SelectedEmployee
         {
             get 
@@ -140,7 +120,6 @@ namespace HRApplication_WPF.ViewModels
 
             return true;
         }
-
         public void SetEmployementStatusComboBox()
         {
             
@@ -156,10 +135,43 @@ namespace HRApplication_WPF.ViewModels
                                             .ToList();
             EmployementStatusWrapperId = 0;
         }
-        private void RefreshEmployesData()
+        private void RefreshEmployesData(int employementStatusId = 0)
         {
-            Employees = new ObservableCollection<EmployeeWrapper>(
-                _repository.GetEmployees());
+            if(employementStatusId == 0)
+                Employees = new ObservableCollection<EmployeeWrapper>(
+                    _repository.GetEmployees());
+            if (employementStatusId == 1)
+                Employees = new ObservableCollection<EmployeeWrapper>(
+                    _repository.GetActualEmployees());
+            if (employementStatusId == 2)
+                Employees = new ObservableCollection<EmployeeWrapper>(
+                    _repository.GetDismissedEmployees());
+
+
+        }
+        private bool canDismissEmploye(object obj)
+        {
+            if(SelectedEmployee != null && SelectedEmployee.DismissDate == null)
+                return true;
+
+            return false;
+                
+        }
+        private async Task DismissEmployee(object obj)
+        {
+            var dismissWindow = Application.Current.MainWindow as MetroWindow;
+            var dialog = await dismissWindow.ShowMessageAsync("Zwolnij pracownika",
+                $"Czy chcesz zwolnic pracownika " +
+                $"{SelectedEmployee.FirstName} " +
+                $"{SelectedEmployee.LastName}?",
+                MessageDialogStyle.AffirmativeAndNegative);
+
+            if (dialog != MessageDialogResult.Affirmative)
+                return;
+            
+            _repository.DismissEmployee(SelectedEmployee.EmploymentPeriodId);
+            
+            RefreshEmployesData();
 
         }
 

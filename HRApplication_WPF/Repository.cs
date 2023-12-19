@@ -43,7 +43,7 @@ namespace HRApplication_WPF
             }
         }
 
-        internal void UpdateEmployee(EmployeeWrapper employee)
+        public void UpdateEmployee(EmployeeWrapper employee)
         {
             using( var context = new ApplicationDbContext())
             {
@@ -65,7 +65,7 @@ namespace HRApplication_WPF
             
         }
 
-        internal void DismissEmployee(object employmentPeriodId)
+        public void DismissEmployee(object employmentPeriodId)
         {
             using( var context = new ApplicationDbContext())
             {
@@ -74,6 +74,40 @@ namespace HRApplication_WPF
                 context.SaveChanges();
             }
            
+        }
+
+        public List<EmployeeWrapper> GetActualEmployees()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var employees = context.Employees
+                    .Include(x => x.EmploymentPeriods)
+                    .AsQueryable();
+
+
+                return employees
+                    .ToList()
+                    .Select(x => x.ToWrapper())
+                    .Where(y=>y.DismissDate==null)
+                    .ToList();
+            }
+        }
+
+        public List<EmployeeWrapper> GetDismissedEmployees()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var employees = context.Employees
+                    .Include(x => x.EmploymentPeriods)
+                    .AsQueryable();
+
+
+                return employees
+                    .ToList()
+                    .Select(x => x.ToWrapper())
+                    .Where(y => y.DismissDate != null)
+                    .ToList();
+            }
         }
     }
 }
