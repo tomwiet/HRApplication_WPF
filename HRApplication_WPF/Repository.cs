@@ -47,7 +47,20 @@ namespace HRApplication_WPF
         {
             using( var context = new ApplicationDbContext())
             {
-               
+               var employeeToUpdate = context.Employees.Find(employee.Id);
+               var employeeDb = employee.ToDao();
+
+               employeeToUpdate.FirsName = employeeDb.FirsName;
+               employeeToUpdate.LastName = employeeDb.LastName;
+               employeeToUpdate.Earnings = employeeDb.Earnings;
+
+               var employmentPeriodToUpdate = context.EmploymentPeriods.Find(employee.EmploymentPeriodId);
+               var employmentPeriodDb = employee.ToEmployementPeriodDao();
+
+               employmentPeriodToUpdate.DismissalDate = employmentPeriodDb.DismissalDate;
+               employmentPeriodToUpdate.EmploymentDate = employmentPeriodDb.EmploymentDate;
+
+                context.SaveChanges();
             }
             
         }
