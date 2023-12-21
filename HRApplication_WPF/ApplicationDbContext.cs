@@ -1,8 +1,10 @@
 using HRApplication_WPF.Model.Domains;
 using HRApplication_WPF.Models.Configurations;
+using HRApplication_WPF.Properties;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows;
 
 namespace HRApplication_WPF
 {
@@ -14,8 +16,13 @@ namespace HRApplication_WPF
         // 
         // If you wish to target a different database and/or database provider, modify the 'ApplicationDbContext' 
         // connection string in the application configuration file.
+        private static string _connectionString = 
+                  $@"Server = {Settings.Default.ServerAddress}\{Settings.Default.ServerName}; " +
+                  $"Database= {Settings.Default.DataBaseName};" +
+                  $"User Id = {Settings.Default.UserName}; " +
+                  $"Password = {Settings.Default.UserPassword};";
         public ApplicationDbContext()
-            : base("name=ApplicationDbContext")
+            : base(_connectionString)
         {
         }
 

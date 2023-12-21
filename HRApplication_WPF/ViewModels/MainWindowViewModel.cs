@@ -26,18 +26,24 @@ namespace HRApplication_WPF.ViewModels
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, canEditEmployee);
             DismissEmployeeCommand = new AsyncRelayCommand(DismissEmployee, canDismissEmploye);
             ComboBoxSelectionChangeCommand = new RelayCommand(ComboBoxSelectionChange);
+            UserSettingsCommand = new RelayCommand(Settings);
 
             SetEmployementStatusComboBox();
             RefreshEmployesData();
    
         }
 
-        
+        private void Settings(object obj)
+        {
+            var settingWindow = new UserSettingsView();
+            settingWindow.ShowDialog();
+        }
 
         public ICommand AddEmployeeCommand { set; get; }
         public ICommand EditEmployeeCommand {set; get; }
         public ICommand DismissEmployeeCommand { set; get; }
         public ICommand ComboBoxSelectionChangeCommand { set; get; }
+        public ICommand UserSettingsCommand { set; get; }
 
         private ObservableCollection<EmployeeWrapper> _employees;
         public ObservableCollection<EmployeeWrapper> Employees

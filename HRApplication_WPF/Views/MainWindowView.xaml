@@ -33,6 +33,7 @@
                     Content="Zwolnij"
                     Command="{Binding DismissEmployeeCommand}"
                     CommandParameter="{Binding SelectedEmployee}"/>
+            
             <ComboBox Width="100"
                       Height="30"
                       Margin="5"
@@ -46,6 +47,12 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>
+            <Button Width="100" 
+        Height="30" 
+        Margin="5"
+        Content="Ustawienia"
+        Command="{Binding UserSettingsCommand}"
+        />
         </StackPanel>
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding Employees}"
