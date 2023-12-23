@@ -27,16 +27,57 @@ namespace HRApplication_WPF.ViewModels
             DismissEmployeeCommand = new AsyncRelayCommand(DismissEmployee, canDismissEmploye);
             ComboBoxSelectionChangeCommand = new RelayCommand(ComboBoxSelectionChange);
             UserSettingsCommand = new RelayCommand(Settings);
+            LoadedMainWindowCommand = new RelayCommand(LoadedWindow);
 
-            SetEmployementStatusComboBox();
-            RefreshEmployesData();
+            LoadedWindow(null);
+            
    
         }
-
-        private void Settings(object obj)
+        private async void LoadedWindow(object arg)
         {
-            var settingWindow = new UserSettingsView();
-            settingWindow.ShowDialog();
+            if (!IsConectionToDatabaseValid())
+            {
+                var metroWindow = Application.Current.MainWindow as MetroWindow;
+                var dialog = await metroWindow.ShowMessageAsync(
+                    "Bład połączenia", "Nie udało się połączyć z bazą danych. Czy chcesz zmienić ustawienia?",
+                    MessageDialogStyle.AffirmativeAndNegative);
+
+                if (dialog == MessageDialogResult.Negative)
+                {
+                    Application.Current.MainWindow.Close();
+                }
+                else
+                {
+                    var settingswindow = new UserSettingsView(false);
+                    settingswindow.ShowDialog();
+                }
+            }
+            else
+            {
+                SetEmployementStatusComboBox();
+                RefreshEmployesData();
+            }
+            
+            
+        }
+
+        private bool IsConectionToDatabaseValid()
+        {
+            try
+            {
+                using(var context = new ApplicationDbContext())
+                {
+                    context.Database.Connection.Open();
+                    context.Database.Connection.Close();
+                }
+                return true;
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
 
         public ICommand AddEmployeeCommand { set; get; }
@@ -44,6 +85,7 @@ namespace HRApplication_WPF.ViewModels
         public ICommand DismissEmployeeCommand { set; get; }
         public ICommand ComboBoxSelectionChangeCommand { set; get; }
         public ICommand UserSettingsCommand { set; get; }
+        public ICommand LoadedMainWindowCommand {  set; get; }
 
         private ObservableCollection<EmployeeWrapper> _employees;
         public ObservableCollection<EmployeeWrapper> Employees
@@ -179,6 +221,11 @@ namespace HRApplication_WPF.ViewModels
         private void ComboBoxSelectionChange(object arg)
         {
             RefreshEmployesData(EmployementStatusWrapperId);
+        }
+        private void Settings(object obj)
+        {
+            var settingWindow = new UserSettingsView(true);
+            settingWindow.ShowDialog();
         }
     }
 }

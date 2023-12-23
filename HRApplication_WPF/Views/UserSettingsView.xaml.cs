@@ -22,10 +22,10 @@ namespace HRApplication_WPF.Views
     /// </summary>
     public partial class UserSettingsView : MetroWindow
     {
-        public UserSettingsView()
+        public UserSettingsView(bool canCloseWindow)
         {
             InitializeComponent();
-            DataContext = new UserSettingsViewModel();
+            DataContext = new UserSettingsViewModel(canCloseWindow);
         }
     }
 }

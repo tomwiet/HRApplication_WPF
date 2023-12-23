@@ -16,42 +16,19 @@ namespace HRApplication_WPF.ViewModels
     public class UserSettingsViewModel : ViewModelBase
     {
         private UserSettings _userSettings;
-        public UserSettingsViewModel()
+        private bool _canCloseWindow;
+        public UserSettingsViewModel(bool canCloseWindow)
         {
             ConfirmCommand = new RelayCommand(Confirm);
             CloseCommand = new RelayCommand(Close);
 
             _userSettings = new UserSettings();
-
-
+            _canCloseWindow = canCloseWindow;
 
         }
-
-        private void Close(object obj)
-        {
-            CloseWindow(obj as Window);
-        }
-
-        private void CloseWindow(Window window)
-        {
-            window.Close();
-        }
-
-        private void Confirm(object obj)
-        {
-            //walidacja
-            UserSettings.Save();
-            RestartApplication();
-        }
-
-        private void RestartApplication()
-        {
-            Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
-        }
+        
         public ICommand ConfirmCommand { get; set; }
         public ICommand CloseCommand { get; set; }
-
         public UserSettings UserSettings
         {
             get 
@@ -65,7 +42,29 @@ namespace HRApplication_WPF.ViewModels
             }
         }
 
-        
-        
+        private void Close(object obj)
+        {
+            if (_canCloseWindow)
+                CloseWindow(obj as Window);
+            else
+                Application.Current.Shutdown();
+
+        }
+        private void CloseWindow(Window window)
+        {
+            window.Close();
+        }
+        private void Confirm(object obj)
+        {
+            //walidacja
+            UserSettings.Save();
+            RestartApplication();
+        }
+        private void RestartApplication()
+        {
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
+
     }
 }
