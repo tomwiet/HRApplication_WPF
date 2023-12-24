@@ -50,24 +50,24 @@ namespace HRApplication_WPF.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("HRAppAdm")]
-        public string UserName {
+        public string DbUserName {
             get {
-                return ((string)(this["UserName"]));
+                return ((string)(this["DbUserName"]));
             }
             set {
-                this["UserName"] = value;
+                this["DbUserName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("hrapp")]
-        public string UserPassword {
+        public string DbUserPassword {
             get {
-                return ((string)(this["UserPassword"]));
+                return ((string)(this["DbUserPassword"]));
             }
             set {
-                this["UserPassword"] = value;
+                this["DbUserPassword"] = value;
             }
         }
         

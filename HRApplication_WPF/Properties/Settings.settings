@@ -8,10 +8,10 @@
     <Setting Name="ServerName" Type="System.String" Scope="User">
       <Value Profile="(Default)">SQLEXPRESS</Value>
     </Setting>
-    <Setting Name="UserName" Type="System.String" Scope="User">
+    <Setting Name="DbUserName" Type="System.String" Scope="User">
       <Value Profile="(Default)">HRAppAdm</Value>
     </Setting>
-    <Setting Name="UserPassword" Type="System.String" Scope="User">
+    <Setting Name="DbUserPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">hrapp</Value>
     </Setting>
     <Setting Name="DataBaseName" Type="System.String" Scope="User">

@@ -19,8 +19,8 @@ namespace HRApplication_WPF
         private static string _connectionString = 
                   $@"Server = {Settings.Default.ServerAddress}\{Settings.Default.ServerName}; " +
                   $"Database= {Settings.Default.DataBaseName};" +
-                  $"User Id = {Settings.Default.UserName}; " +
-                  $"Password = {Settings.Default.UserPassword};";
+                  $"User Id = {Settings.Default.DbUserName}; " +
+                  $"Password = {Settings.Default.DbUserPassword};";
         public ApplicationDbContext()
             : base(_connectionString)
         {

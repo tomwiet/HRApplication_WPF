@@ -56,7 +56,9 @@ namespace HRApplication_WPF.ViewModels
         }
         private void Confirm(object obj)
         {
-            //walidacja
+            if (!UserSettings.IsValid)
+                return;
+
             UserSettings.Save();
             RestartApplication();
         }

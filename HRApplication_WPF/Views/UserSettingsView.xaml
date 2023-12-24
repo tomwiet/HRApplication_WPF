@@ -30,9 +30,9 @@
                  Height="30"
                  Margin="5"
                  Text="{Binding UserSettings.ServerAddress,
-                                UpdateSourceTrigger=PropertyChanged}"
-                 />
-
+                                UpdateSourceTrigger=PropertyChanged,
+                                ValidatesOnDataErrors=True}"/>
+                 
         <Label Content="Nazwa serwera"
                Grid.Row="1"/>
         <TextBox Grid.Column="1"
@@ -40,34 +40,39 @@
                  Height="30"
                  Margin="5"
                  Text="{Binding UserSettings.ServerName,
-                                UpdateSourceTrigger=PropertyChanged}"/>
+                                UpdateSourceTrigger=PropertyChanged,
+                                ValidatesOnDataErrors=True}"/>
 
         <Label Content="Nazwa bazy"
                 Grid.Row="2"/>
         <TextBox Grid.Column="1"
                  Grid.Row="2"
                  Height="30"
+                 Margin="5"
                  Text="{Binding UserSettings.DataBaseName,
-               UpdateSourceTrigger=PropertyChanged}"
-                 Margin="5"/>
+                 UpdateSourceTrigger=PropertyChanged,
+                 ValidatesOnDataErrors=True}"/>
 
         <Label Content="Login użytkownika"
                Grid.Row="3"/>
         <TextBox Grid.Column="1"
                  Grid.Row="3"
                  Height="30"
-                 Text="{Binding UserSettings.UserName,
-                 UpdateSourceTrigger=PropertyChanged}"
-                 Margin="5"/>
+                 Margin="5"
+                 Text="{Binding UserSettings.DbUserName,
+                 UpdateSourceTrigger=PropertyChanged,
+                 ValidatesOnDataErrors=True}"/>
 
         <Label Content="Hasło użytkownika"
                Grid.Row="4"/>
         <TextBox Grid.Column="1"
                  Grid.Row="4"
                  Height="30"
-                 Text="{Binding UserSettings.UserPassword,
-                 UpdateSourceTrigger=PropertyChanged}"
-                 Margin="5"/>
+                 Margin="5"
+                 Text="{Binding UserSettings.DbUserPassword,
+                 UpdateSourceTrigger=PropertyChanged,
+                 ValidatesOnDataErrors=True}"/>
+                 
         <StackPanel Orientation="Horizontal"
                     Grid.Row="5"
                     Grid.Column="1">
