@@ -26,19 +26,24 @@
         
         <Label Content="Id" Margin="5"
                Visibility="{Binding IsUpdate, 
-                                    Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <TextBox Grid.Column="1" Margin="5"
                  Text="{Binding Employee.Id}"
-                 Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 Visibility="{Binding IsUpdate, 
+                                      Converter={StaticResource BooleanToVisibilityConverter}}"
                  IsReadOnly="True"/>
 
         <Label Content="Imię" Grid.Row="1" Margin="5"/>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
-                 Text="{Binding Employee.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Employee.FirstName, 
+                                UpdateSourceTrigger=PropertyChanged,
+                                ValidatesOnDataErrors=True}"/>
 
         <Label Content="Nazwisko" Grid.Row="2" Margin="5"/>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
-                 Text="{Binding Employee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Employee.LastName,
+                                UpdateSourceTrigger=PropertyChanged,
+                                ValidatesOnDataErrors=True}"/>
 
         <Label Content="Zarobki" Grid.Row="3" Margin="5"/>
         <TextBox 
@@ -47,6 +52,7 @@
             Margin="5"
             Text="{Binding Employee.Earnings, 
                     UpdateSourceTrigger=PropertyChanged,
+                    ValidatesOnDataErrors=True,
                     StringFormat=C2, 
                     ConverterCulture=pl-PL}"/>
 
@@ -54,7 +60,8 @@
         <DatePicker 
             Grid.Row="4" Grid.Column="1" Margin="5"
             SelectedDateFormat="Short"
-            SelectedDate="{Binding Employee.EmploymentDate}"/>
+            SelectedDate="{Binding Employee.EmploymentDate,
+                                   ValidatesOnDataErrors=True}"/>
 
         <Label Content="Data zwolnienia" Grid.Row="5" Margin="5"
                Visibility="{Binding IsEmployed, Converter={StaticResource BooleanToVisibilityConverter}}"/>

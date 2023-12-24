@@ -28,6 +28,7 @@ namespace HRApplication_WPF.ViewModels
 				IsUpdate = false;
 				Employee = new EmployeeWrapper();
 				Employee.EmploymentDate = DateTime.Now;
+				IsValid = Employee.IsValid();
 			}
 			else
 			{
@@ -37,32 +38,9 @@ namespace HRApplication_WPF.ViewModels
 
 				if(Employee.DismissDate == null )
 					IsEmployed = false;
+				IsValid = Employee.IsValid();
 			}
         }
-
-        private void Confirm(object obj)
-        {
-           if(!IsUpdate)
-			{
-				AddEmployee();
-			}
-			else
-			{
-				UpdateEmployee();
-			}
-			CloseWindow(obj as Window);
-        }
-
-        private void UpdateEmployee()
-        {
-			_repository.UpdateEmployee(Employee);
-        }
-
-        private void AddEmployee()
-        {
-			_repository.AddEmployee(Employee);
-        }
-
         public ICommand CloseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
 
@@ -80,6 +58,20 @@ namespace HRApplication_WPF.ViewModels
 			}
 		}
 
+		private bool _isValid;
+		public bool IsValid
+		{
+			get 
+			{ 
+				return _isValid; 
+			}
+			set 
+			{ 
+				_isValid = value;
+				OnPropertyChanged();
+			}
+		}
+
 		private bool _isUpdate;
         public bool IsUpdate
 		{
@@ -93,15 +85,36 @@ namespace HRApplication_WPF.ViewModels
 				OnPropertyChanged();
 			}
 		}
-
 		private bool _isUpdateOrEmployed;
 		public bool IsEmployed
         {
 			get { return _isUpdateOrEmployed; }
 			set { _isUpdateOrEmployed = value; }
 		}
+        private void Confirm(object obj)
+        {
+			if (IsValid)
+			{
+				if (!IsUpdate)
+					AddEmployee();	
+				else
+					UpdateEmployee();
 
-		private void Close(object obj)
+				CloseWindow(obj as Window);
+			}
+			else
+				return;
+            
+        }
+        private void UpdateEmployee()
+        {
+            _repository.UpdateEmployee(Employee);
+        }
+        private void AddEmployee()
+        {
+            _repository.AddEmployee(Employee);
+        }
+        private void Close(object obj)
         {
             CloseWindow(obj as Window);
         }
