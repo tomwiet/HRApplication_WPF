@@ -30,11 +30,13 @@ namespace HRApplication_WPF.ViewModels
             LoadedMainWindowCommand = new RelayCommand(LoadedWindow);
 
             LoadedWindow(null);
-            
    
         }
         private async void LoadedWindow(object arg)
         {
+            var loginWindow = new UserLoginView();
+            loginWindow.ShowDialog();
+
             if (!IsConectionToDatabaseValid())
             {
                 var metroWindow = Application.Current.MainWindow as MetroWindow;
