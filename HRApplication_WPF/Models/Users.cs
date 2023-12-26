@@ -16,7 +16,9 @@ namespace HRApplication_WPF.Models
         {
             using (var sha1 = new SHA1Managed())
             {
-                return BitConverter.ToString(sha1.ComputeHash(Encoding.UTF8.GetBytes(password)));
+                if (!string.IsNullOrEmpty(password))
+                    return BitConverter.ToString(sha1.ComputeHash(Encoding.UTF8.GetBytes(password)));
+                return string.Empty;
             }
         }
 
