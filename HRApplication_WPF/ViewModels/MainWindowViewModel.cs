@@ -28,18 +28,20 @@ namespace HRApplication_WPF.ViewModels
             ComboBoxSelectionChangeCommand = new RelayCommand(ComboBoxSelectionChange);
             UserSettingsCommand = new RelayCommand(Settings);
             LoadedMainWindowCommand = new RelayCommand(LoadedWindow);
+            
+            var loginWindow = new UserLoginView();
+            loginWindow.ShowDialog();
 
             LoadedWindow(null);
    
         }
         private async void LoadedWindow(object arg)
         {
-            var loginWindow = new UserLoginView();
-            loginWindow.ShowDialog();
 
             if (!IsConectionToDatabaseValid())
             {
                 var metroWindow = Application.Current.MainWindow as MetroWindow;
+
                 var dialog = await metroWindow.ShowMessageAsync(
                     "Bład połączenia", "Nie udało się połączyć z bazą danych. Czy chcesz zmienić ustawienia?",
                     MessageDialogStyle.AffirmativeAndNegative);
@@ -59,7 +61,6 @@ namespace HRApplication_WPF.ViewModels
                 SetEmployementStatusComboBox();
                 RefreshEmployesData();
             }
-            
             
         }
 

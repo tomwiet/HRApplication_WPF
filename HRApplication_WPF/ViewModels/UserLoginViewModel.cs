@@ -1,4 +1,5 @@
 ﻿using HRApplication_WPF.Commands;
+using HRApplication_WPF.Models;
 using HRApplication_WPF.Views;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,35 @@ namespace HRApplication_WPF.ViewModels
 {
     internal class UserLoginViewModel :ViewModelBase
     {
+        private bool _isLoged = false;
         public UserLoginViewModel()
         {
             ConfirmCommand = new RelayCommand(Confirm);
             CancelCommand = new RelayCommand(Cancel);
+      
+        }
+
+        private bool IfLoginDataValid()
+        {
+            var passwordSha1 = Users.GetSha1PasswordString(UserPassword);
+            
+            return Users.UserName == UserLogin &&
+                    Users.Password == passwordSha1;
                 
         }
 
         private void Confirm(object obj)
         {
-            CloseWindow(obj as Window);
+            if (IfLoginDataValid())
+                CloseWindow(obj as Window);
+            else
+                ErrorLoginMessage = "Nieprawidłowe dane logowania";
+            
         }
 
         private void Cancel(object obj)
         {
-            Application.Current.MainWindow.Close();
+            Application.Current.Shutdown();
         }
         private void CloseWindow(Window window)
         {
@@ -62,6 +77,20 @@ namespace HRApplication_WPF.ViewModels
                 OnPropertyChanged();
             }
         }
+        private string _errorLoginMessage;
+        public string ErrorLoginMessage
+        {
+            get 
+            { 
+                return _errorLoginMessage; 
+            }
+            set 
+            { 
+                _errorLoginMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
 
     }
 }
