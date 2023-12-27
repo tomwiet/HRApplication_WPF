@@ -28,7 +28,7 @@
                Visibility="{Binding IsUpdate, 
                             Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <TextBox Grid.Column="1" Margin="5"
-                 Text="{Binding Employee.Id}"
+                 Text="{Binding Employee.Id,UpdateSourceTrigger=PropertyChanged}"
                  Visibility="{Binding IsUpdate, 
                                       Converter={StaticResource BooleanToVisibilityConverter}}"
                  IsReadOnly="True"/>
@@ -61,14 +61,15 @@
             Grid.Row="4" Grid.Column="1" Margin="5"
             SelectedDateFormat="Short"
             SelectedDate="{Binding Employee.EmploymentDate,
-                                   ValidatesOnDataErrors=True}"/>
+                                   ValidatesOnDataErrors=True,
+                                   UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Data zwolnienia" Grid.Row="5" Margin="5"
                Visibility="{Binding IsEmployed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <DatePicker Grid.Row="5" Grid.Column="1" Margin="5"
                     SelectedDateFormat="Short"
                     SelectedDate="{Binding Employee.DismissDate}"
-                    Visibility="{Binding IsEmployed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    Visibility="{Binding IsEmployed, Converter={StaticResource BooleanToVisibilityConverter},UpdateSourceTrigger=PropertyChanged}"/>
         
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
             <Button Content="Anuluj" Height="30" Width="80" Margin="5"

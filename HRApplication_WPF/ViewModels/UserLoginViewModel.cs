@@ -13,7 +13,7 @@ namespace HRApplication_WPF.ViewModels
 {
     internal class UserLoginViewModel :ViewModelBase
     {
-        private bool _isLoged = false;
+       
         public UserLoginViewModel()
         {
             ConfirmCommand = new RelayCommand(Confirm);

@@ -28,7 +28,7 @@ namespace HRApplication_WPF.ViewModels
 				IsUpdate = false;
 				Employee = new EmployeeWrapper();
 				Employee.EmploymentDate = DateTime.Now;
-				IsValid = Employee.IsValid();
+				
 			}
 			else
 			{
@@ -38,7 +38,7 @@ namespace HRApplication_WPF.ViewModels
 
 				if(Employee.DismissDate == null )
 					IsEmployed = false;
-				IsValid = Employee.IsValid();
+			
 			}
         }
         public ICommand CloseCommand { get; set; }
@@ -54,20 +54,6 @@ namespace HRApplication_WPF.ViewModels
 			set 
 			{ 
 				_employee = value;
-				OnPropertyChanged();
-			}
-		}
-
-		private bool _isValid;
-		public bool IsValid
-		{
-			get 
-			{ 
-				return _isValid; 
-			}
-			set 
-			{ 
-				_isValid = value;
 				OnPropertyChanged();
 			}
 		}
@@ -93,7 +79,7 @@ namespace HRApplication_WPF.ViewModels
 		}
         private void Confirm(object obj)
         {
-			if (IsValid)
+			if (Employee.IsValid)
 			{
 				if (!IsUpdate)
 					AddEmployee();	

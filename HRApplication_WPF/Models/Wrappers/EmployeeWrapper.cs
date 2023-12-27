@@ -84,12 +84,16 @@ namespace HRApplication_WPF.Models.Wrappers
             }
         }
 
-        public bool IsValid()
+        public bool IsValid
         {
-            return _isFirstNameValid && 
-                   _isLastNameValid &&
-                   _isEarningsValid &&
-                   _isEmploymentDateValid;
+            get
+            {
+                return _isFirstNameValid && 
+                       _isLastNameValid &&
+                       _isEarningsValid &&
+                      _isEmploymentDateValid;
+            }
+            
         }
     }
 }
