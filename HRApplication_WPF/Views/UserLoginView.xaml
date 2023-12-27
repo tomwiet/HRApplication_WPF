@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HRApplication_WPF.Views"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:converters="clr-namespace:HRApplication_WPF.Models.Converters"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Name="UserLoginWindow"         
         Title="Logowanie użytkownika" Height="180" Width="250">
+    <mah:MetroWindow.Resources>
+        <converters:PasswordBoxConverter x:Key="passwordBoxConverter"/>
+    </mah:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -37,14 +41,12 @@
             Height="30"
             Margin="5"
             Content="Hasło"/>
-        <TextBox
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="120"
-            Height="30"
-            Margin="5"
-            Text="{Binding UserPassword,
-            UpdateSourceTrigger=PropertyChanged}"/>
+        <PasswordBox Name="PasswordBox" 
+                     Grid.Row="1" 
+                     Grid.Column="1" 
+                     Width="120"
+                     Height="30"
+                     Margin="5"/>
         <Label
             Grid.Row="2"
             Grid.Column="1"
@@ -66,8 +68,14 @@
                 Height="30"
                 Width="80"
                 Margin="5"
-                Command="{Binding ConfirmCommand}"
-                CommandParameter="{Binding ElementName=UserLoginWindow}"/>
+                Command="{Binding ConfirmCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource passwordBoxConverter}">
+                        <Binding ElementName="UserLoginWindow" />
+                        <Binding ElementName="PasswordBox" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
         </StackPanel>
 
     </Grid>
