@@ -21,10 +21,10 @@ namespace HRApplication_WPF.ViewModels
       
         }
 
-        private bool IsLoginDataValid()
+        private bool IsLoginDataValid(string userPassword)
         {
-            var passwordSha1 = Users.GetSha1PasswordString(UserPassword);
-            
+            var passwordSha1 = Users.GetSha1PasswordString(userPassword);
+           
             return Users.UserName == UserLogin &&
                     Users.Password == passwordSha1;
                 
@@ -32,8 +32,10 @@ namespace HRApplication_WPF.ViewModels
 
         private void Confirm(object obj)
         {
-            if (IsLoginDataValid())
-                CloseWindow(obj as Window);
+            var loginParams = obj as PasswordBoxParams;
+            var userPassword = loginParams.PasswordBox.Password;
+            if (IsLoginDataValid(userPassword))
+                CloseWindow(loginParams.Window);
             else
                 ErrorLoginMessage = "Nieprawidłowe dane logowania";
             
